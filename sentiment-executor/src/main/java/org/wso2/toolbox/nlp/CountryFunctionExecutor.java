@@ -19,7 +19,6 @@
 package org.wso2.toolbox.nlp;
 
 import edu.stanford.nlp.util.Triple;
-import org.apache.log4j.Logger;
 import org.wso2.toolbox.nlp.table.CountryCodeTable;
 import org.wso2.siddhi.core.config.SiddhiContext;
 import org.wso2.siddhi.core.exception.QueryCreationException;
@@ -33,7 +32,6 @@ import java.util.List;
 public class CountryFunctionExecutor extends FunctionExecutor {
 
     private CountryCodeTable countryCodeTable;
-    private static Logger logger = Logger.getLogger(CountryFunctionExecutor.class);
 
     @Override
     public void init(Attribute.Type[] types, SiddhiContext siddhiContext) {
@@ -51,12 +49,9 @@ public class CountryFunctionExecutor extends FunctionExecutor {
         return recognizeEntity(String.valueOf(obj));
     }
 
-    @Override
     public void destroy() {
-
     }
 
-    @Override
     public Attribute.Type getReturnType() {
         return Attribute.Type.STRING;
     }

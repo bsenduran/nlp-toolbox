@@ -1,5 +1,5 @@
 /*
-*  Copyright (c) 2005-2010, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*  Copyright (c) 2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
 *  WSO2 Inc. licenses this file to you under the Apache License,
 *  Version 2.0 (the "License"); you may not use this file except
@@ -14,12 +14,6 @@
 * KIND, either express or implied.  See the License for the
 * specific language governing permissions and limitations
 * under the License.
-*
-* Project Name: com.ner.location.table
-* Package Name: com.ner.location.table
-* File Name: LocationLoarder.java
-* Author: daneshk
-* Created Date: Jul 16, 2014
 */
 
 package org.wso2.toolbox.nlp.table;

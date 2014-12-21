@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 ~ Copyright (c) 2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 ~
@@ -17,17 +18,14 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.wso2.carbon</groupId>
-    <artifactId>nlp-toolbox-parent</artifactId>
+
+    <groupId>org.wso2.toolbox.nlp</groupId>
+    <artifactId>sentiment-executor</artifactId>
     <version>1.0.0</version>
-    <packaging>pom</packaging>
-    <name>NLP Toolbox for CEP - Training Project</name>
-    <description>NLP Toolbox for CEP - Training Project</description>
-    <url>http://wso2.org</url>
- 
+    <packaging>jar</packaging>
+
     <repositories>
         <repository>
             <id>wso2-maven2-repository</id>
@@ -36,10 +34,24 @@
         </repository>
     </repositories>
 
-    <modules>
-        <module>stanford-nlp-bundle</module>
-        <module>sentiment-executor</module>
-        <module>twitter-stream-connector</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.wso2.siddhi</groupId>
+            <artifactId>siddhi-core</artifactId>
+            <version>2.1.0-wso2v1</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.wso2.sentiment</groupId>
+            <artifactId>stanford-nlp-bundle</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+    </dependencies>
 </project>
+

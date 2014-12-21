@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.apache.synapse.protocol.twitter;
+package com.wso2.stream.connector.protocol;
 
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.OMFactory;
@@ -25,9 +25,6 @@ import twitter4j.Status;
 
 import javax.xml.namespace.QName;
 
-/**
- * Created by senduran on 7/11/14.
- */
 public class TweetContent {
 
     private QName qTweet;
@@ -103,8 +100,6 @@ public class TweetContent {
         }
 
         return tweet;
-
-
 
     }
 
