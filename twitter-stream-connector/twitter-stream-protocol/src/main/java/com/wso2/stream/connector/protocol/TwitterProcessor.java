@@ -1,5 +1,5 @@
 /*
-*  Copyright (c) 2005-2010, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*  Copyright (c) 2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
 *  WSO2 Inc. licenses this file to you under the Apache License,
 *  Version 2.0 (the "License"); you may not use this file except
@@ -14,15 +14,9 @@
 * KIND, either express or implied.  See the License for the
 * specific language governing permissions and limitations
 * under the License.
-*
-* Project Name: com.wso2.stream.connector.protocol
-* Package Name: com.wso2.stream.connector.protocol
-* File Name: TwitterProcessor.java
-* Author: daneshk
-* Created Date: Jul 5, 2014
 */
 
-package org.apache.synapse.protocol.twitter;
+package com.wso2.stream.connector.protocol;
 
 import java.util.Properties;
 
@@ -35,15 +29,9 @@ import org.apache.synapse.task.Task;
 import org.apache.synapse.task.TaskDescription;
 import org.apache.synapse.task.TaskStartupObserver;
 
-
-/**
- * @author daneshk
- *
- */
 public class TwitterProcessor implements PollingProcessor, TaskStartupObserver {
 
     private static final Log log = LogFactory.getLog(TwitterProcessor.class.getName());
-
 
     private TwitterPollingConsumer pollingConsumer;
     private String name;
@@ -109,5 +97,5 @@ public class TwitterProcessor implements PollingProcessor, TaskStartupObserver {
     public void destroy() {
         log.info("Inbound Twitter listener ending operation on destination " + name);
         startUpController.destroy();
-    }  
+    } 
 }

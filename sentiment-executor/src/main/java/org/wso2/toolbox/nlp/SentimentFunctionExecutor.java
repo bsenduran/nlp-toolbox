@@ -25,11 +25,13 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
+
 import org.apache.log4j.Logger;
 import org.wso2.siddhi.core.config.SiddhiContext;
 import org.wso2.siddhi.core.exception.QueryCreationException;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.query.api.definition.Attribute;
+import org.wso2.siddhi.query.api.definition.Attribute.Type;
 import org.wso2.siddhi.query.api.extension.annotation.SiddhiExtension;
 
 import java.io.UnsupportedEncodingException;
@@ -64,16 +66,6 @@ public class SentimentFunctionExecutor extends FunctionExecutor {
     @Override
     protected Object process(Object obj) {
         return calculateSentiment(String.valueOf(obj));
-    }
-
-    @Override
-    public void destroy() {
-
-    }
-
-    @Override
-    public Attribute.Type getReturnType() {
-        return Attribute.Type.INT;
     }
 
     private int calculateSentiment(String text) {
@@ -148,5 +140,13 @@ public class SentimentFunctionExecutor extends FunctionExecutor {
         }
         return removedStr;
     }
+
+	public Type getReturnType() {
+		return null;
+	}
+
+	public void destroy() {
+		
+	}
 
 }

@@ -1,5 +1,5 @@
 /*
-*  Copyright (c) 2005-2010, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*  Copyright (c) 2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
 *  WSO2 Inc. licenses this file to you under the Apache License,
 *  Version 2.0 (the "License"); you may not use this file except
@@ -14,36 +14,29 @@
 * KIND, either express or implied.  See the License for the
 * specific language governing permissions and limitations
 * under the License.
-*
-* Project Name: com.wso2.stream.connector.protocol
-* Package Name: com.wso2.stream.connector.protocol
-* File Name: TwitterInjectHandler.java
-* Author: daneshk
-* Created Date: Jul 6, 2014
 */
 
-package org.apache.synapse.protocol.twitter;
+package com.wso2.stream.connector.protocol;
 
 import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.UUIDGenerator;
 import org.apache.axiom.soap.SOAPEnvelope;
+import org.apache.axiom.util.UIDGenerator;
 import org.apache.axis2.context.MessageContext;
 import org.apache.axis2.transport.TransportUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.synapse.core.SynapseEnvironment;
-import org.apache.synapse.inbound.InjectHandler;
 import org.apache.synapse.mediators.base.SequenceMediator;
 
-public class TwitterInjectHandler implements InjectHandler {
+public class TwitterInjectHandler{
 
 
-    private static final Log log = LogFactory.getLog(TwitterInjectHandler.class);
-
-    private String injectingSeq;
-    private String onErrorSeq;
+	private static final Log log = LogFactory.getLog(TwitterInjectHandler.class);
+	
+	private String injectingSeq;
+	private String onErrorSeq;
     private SynapseEnvironment synapseEnvironment;
-
+    
     /**
      * @param injectingSeq
      * @param onErrorSeq
@@ -56,6 +49,7 @@ public class TwitterInjectHandler implements InjectHandler {
         this.synapseEnvironment = synapseEnvironment;
     }
 
+	/* (non-Javadoc)
     /* (non-Javadoc)
      * @see org.apache.synapse.inbound.InjectHandler#invoke(java.lang.Object)
      */
@@ -83,7 +77,7 @@ public class TwitterInjectHandler implements InjectHandler {
         }
         return true;
     }
-
+	
     /**
      * Create the initial message context for the file
      */
@@ -91,10 +85,11 @@ public class TwitterInjectHandler implements InjectHandler {
         org.apache.synapse.MessageContext msgCtx = synapseEnvironment.createMessageContext();
         MessageContext axis2MsgCtx = ((org.apache.synapse.core.axis2.Axis2MessageContext) msgCtx).getAxis2MessageContext();
         axis2MsgCtx.setServerSide(true);
-        axis2MsgCtx.setMessageID(UUIDGenerator.getUUID());
+        axis2MsgCtx.setMessageID(UIDGenerator.generateUID());
         // There is a discrepency in what I thought, Axis2 spawns a nes threads to
         // send a message is this is TRUE - and I want it to be the other way
         msgCtx.setProperty(MessageContext.CLIENT_API_NON_BLOCKING, true);
         return msgCtx;
     }
+
 }

@@ -1,5 +1,5 @@
 /*
-*  Copyright (c) 2005-2010, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*  Copyright (c) 2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
 *  WSO2 Inc. licenses this file to you under the Apache License,
 *  Version 2.0 (the "License"); you may not use this file except
@@ -14,15 +14,9 @@
 * KIND, either express or implied.  See the License for the
 * specific language governing permissions and limitations
 * under the License.
-*
-* Project Name: com.wso2.stream.connector.protocol
-* Package Name: com.wso2.stream.connector.protocol
-* File Name: TwitterTask.java
-* Author: daneshk
-* Created Date: Jul 6, 2014
 */
 
-package org.apache.synapse.protocol.twitter;
+package com.wso2.stream.connector.protocol;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -30,30 +24,27 @@ import org.apache.synapse.ManagedLifecycle;
 import org.apache.synapse.core.SynapseEnvironment;
 import org.apache.synapse.task.Task;
 
-/**
- * @author daneshk
- *
- */
 public class TwitterTask implements Task, ManagedLifecycle {
     private static final Log logger = LogFactory.getLog(TwitterTask.class.getName());
 
     private TwitterPollingConsumer twitterPollingConsumer;
     
     public TwitterTask(TwitterPollingConsumer twitterPollingConsumer) {
-    	logger.info("Initializing.");
+    	logger.debug("Initializing.");
     	this.twitterPollingConsumer = twitterPollingConsumer;
     }
 
     public void execute() {
+    	logger.debug("Executing.");
     	twitterPollingConsumer.execute();
     }
 
 
     public void init(SynapseEnvironment synapseEnvironment) {
-        logger.info("Initializing.");
+        logger.debug("Initializing.");
     }
 
     public void destroy() {
-        logger.info("Destroying.");
+        logger.debug("Destroying.");
     }
 }
