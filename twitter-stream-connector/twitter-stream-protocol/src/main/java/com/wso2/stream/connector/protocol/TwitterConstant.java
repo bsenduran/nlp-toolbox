@@ -29,5 +29,5 @@ public class TwitterConstant {
 	//property key in the InBoundEP properties file for the twitter api access secret
 	public static final String ACCESS_SECRET = "connection.twitter.accesssecret";
 	//property key in the InBoundEP properties file for the twitter filter tags
-    public static final String FILTER_TAG = "twitter.filter.tag";
+	public static final String FILTER_TAG = "twitter.filter.tag";
 }
