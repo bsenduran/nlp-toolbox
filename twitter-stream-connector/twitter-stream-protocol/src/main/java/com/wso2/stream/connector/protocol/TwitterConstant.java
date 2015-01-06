@@ -20,9 +20,14 @@ package com.wso2.stream.connector.protocol;
 
 public class TwitterConstant {
 
+	//property key in the InBoundEP properties file for the twitter api consumer key
 	public static final String CONSUMER_KEY = "connection.twitter.consumerkey";
+	//property key in the InBoundEP properties file for the twitter api consumer secret
 	public static final String CONSUMER_SECRET = "connection.twitter.consumersecret";
+	//property key in the InBoundEP properties file for the twitter api access token
 	public static final String ACCESS_TOKEN = "connection.twitter.accesstoken";
+	//property key in the InBoundEP properties file for the twitter api access secret
 	public static final String ACCESS_SECRET = "connection.twitter.accesssecret";
-    public static final String FILTER_TAG = "twitter.filter.tag";
+	//property key in the InBoundEP properties file for the twitter filter tags
+	public static final String FILTER_TAG = "twitter.filter.tag";
 }

@@ -30,21 +30,20 @@ public class TwitterTask implements Task, ManagedLifecycle {
     private TwitterPollingConsumer twitterPollingConsumer;
     
     public TwitterTask(TwitterPollingConsumer twitterPollingConsumer) {
-    	logger.debug("Initializing.");
     	this.twitterPollingConsumer = twitterPollingConsumer;
     }
 
     public void execute() {
-    	logger.debug("Executing.");
+    	logger.debug("Execute twitter polling task");
     	twitterPollingConsumer.execute();
     }
 
 
     public void init(SynapseEnvironment synapseEnvironment) {
-        logger.debug("Initializing.");
+    	logger.debug("Initialize the twitter polling task");
     }
 
     public void destroy() {
-        logger.debug("Destroying.");
+    	logger.debug("Destroy the twitter polling task");
     }
 }

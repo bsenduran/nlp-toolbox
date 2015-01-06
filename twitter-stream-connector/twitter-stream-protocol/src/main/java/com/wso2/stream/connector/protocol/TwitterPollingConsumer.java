@@ -22,12 +22,15 @@ import java.util.LinkedList;
 import java.util.Properties;
 import java.util.Queue;
 
-
 import org.apache.axiom.om.OMAbstractFactory;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.OMFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.wso2.stream.connector.protocol.TweetContent;
+import com.wso2.stream.connector.protocol.TwitterConstant;
+import com.wso2.stream.connector.protocol.TwitterInjectHandler;
 
 import twitter4j.FilterQuery;
 import twitter4j.StallWarning;
@@ -58,6 +61,8 @@ public class TwitterPollingConsumer {
 	private TweetContent tweetContent;
 
 	/**
+	 * TwitterPollingConsumer constructor
+	 * This is call when initializing the polling processor
 	 * @param twitterProperties
 	 */
 	public TwitterPollingConsumer(Properties twitterProperties) {
@@ -70,15 +75,15 @@ public class TwitterPollingConsumer {
 		omFactory = OMAbstractFactory.getOMFactory();
 		tweetContent = new TweetContent();
 
-		// Create a new BasicClient. By default gzip is enabled.
-
-		logger.info("Creating client ............");
+		//Establishing connection with twitter streaming api
 		setupConnection();
-		logger.info("Client created successfully ............");
+		logger.info("Twitter connection setup successfully.");
 	}
 
 	/**
-     */
+	 * Load credentials from the Twitter end-point property file.
+	 * @param properties
+	 */
 	private void loadCredentials(Properties properties) {
 		this.consumerKey = properties.getProperty(TwitterConstant.CONSUMER_KEY);
 		this.consumerSecret = properties
@@ -88,13 +93,13 @@ public class TwitterPollingConsumer {
 		this.accessToken = properties.getProperty(TwitterConstant.ACCESS_TOKEN);
 	}
 
-	/**
-	 * @param twitterInjectHandler
-	 */
 	public void registerHandler(TwitterInjectHandler twitterInjectHandler) {
 		this.injectHandler = twitterInjectHandler;
 	}
 
+	/**
+	 * Setting up a connection with Twitter Stream API with the given credentials
+	 */
 	private void setupConnection() {
 		StatusListener listener = new StatusListenerImpl();
 
@@ -123,6 +128,10 @@ public class TwitterPollingConsumer {
 		poll();
 	}
 
+	/**
+	 * This is invoked each time when Inbound-endpoint triggers
+	 * @return
+	 */
 	public Object poll() {
 		try {
 			while (twitterQueue.size() > 0) {
@@ -153,25 +162,26 @@ public class TwitterPollingConsumer {
 			}
 		}
 
-		public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
+		public void onException(Exception ex) {
+			logger.error("Twitter source threw an exception", ex);
+		}
 
+		public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
+			logger.debug("Got a status deletion notice id:" + statusDeletionNotice.getStatusId());
 		}
 
 		public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
-
+			logger.debug("Got track limitation notice: " +numberOfLimitedStatuses);
 		}
 
 		public void onScrubGeo(long userId, long upToStatusId) {
-
+			logger.debug("Got scrub_geo event userId:" + userId + " upToStatusId:" + upToStatusId);
 		}
 
 		public void onStallWarning(StallWarning warning) {
-
+			logger.debug("Got stall warning:" + warning);
 		}
 
-		public void onException(Exception ex) {
-
-		}
 	}
 
 }
