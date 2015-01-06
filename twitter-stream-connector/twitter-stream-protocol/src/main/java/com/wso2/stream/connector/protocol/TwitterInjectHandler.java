@@ -37,11 +37,6 @@ public class TwitterInjectHandler{
 	private String onErrorSeq;
     private SynapseEnvironment synapseEnvironment;
     
-    /**
-     * @param injectingSeq
-     * @param onErrorSeq
-     * @param synapseEnvironment
-     */
     public TwitterInjectHandler(String injectingSeq, String onErrorSeq,
                                 SynapseEnvironment synapseEnvironment) {
         this.injectingSeq = injectingSeq;
@@ -86,7 +81,7 @@ public class TwitterInjectHandler{
         MessageContext axis2MsgCtx = ((org.apache.synapse.core.axis2.Axis2MessageContext) msgCtx).getAxis2MessageContext();
         axis2MsgCtx.setServerSide(true);
         axis2MsgCtx.setMessageID(UIDGenerator.generateUID());
-        // There is a discrepency in what I thought, Axis2 spawns a nes threads to
+        // There is a discrepancy in what I thought, Axis2 spawns a new threads to
         // send a message is this is TRUE - and I want it to be the other way
         msgCtx.setProperty(MessageContext.CLIENT_API_NON_BLOCKING, true);
         return msgCtx;
